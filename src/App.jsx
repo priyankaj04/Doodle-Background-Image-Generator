@@ -23,18 +23,6 @@ export default function App() {
     setTimeout(() => setMessage(''), 3000);
   };
 
-  const handleGenerateDoodle = useCallback(() => {
-    if (type === 'emoji' && !selectedEmojis.length) {
-      showMessage('Please select at least one emoji!');
-      return;
-    }
-    if (type === 'icon' && !selectedIcons.length && !selectedFlaticons.length) {
-      showMessage('Please select at least one icon!');
-      return;
-    }
-    setDoodles([]);
-  }, [type, selectedEmojis, selectedIcons, selectedFlaticons]);
-
   const handleDownloadDoodle = () => {
     if (type === 'emoji' && !selectedEmojis.length) {
       showMessage('Please select at least one emoji before downloading!');
@@ -92,7 +80,7 @@ export default function App() {
               <FlaticonSearch selectedIcons={selectedFlaticons} onIconSelect={setSelectedFlaticons} />
             </>
           )}
-          <ActionButtons onGenerate={handleGenerateDoodle} onDownload={handleDownloadDoodle} />
+          <ActionButtons onDownload={handleDownloadDoodle} />
           <MessageBox message={message} />
         </div>
         <div className=" h-full flex-2">
